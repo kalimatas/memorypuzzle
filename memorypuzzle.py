@@ -29,6 +29,7 @@ ORANGE = (255, 128, 0)
 PURPLE = (255, 0, 255)
 CYAN = (0, 255, 255)
 
+# new comment here: colours
 BGCOLOR = NAVYBLUE
 LIGHTBGCOLOR = GRAY
 BOXCOLOR = WHITE
@@ -56,6 +57,7 @@ def splitInfoGroupsOf(groupSize, theList):
 		result.append(theList[i:i + groupSize])
 	return result
 
+# new comment here: drawBoxCovers
 def drawBoxCovers(board, boxes, coverage):
 	for box in boxes:
 		left, top = leftTopCoordsOfBox(box[0], box[1])
@@ -89,6 +91,7 @@ def startGameAnimation(board):
 		revealedBoxesAnimation(board, boxGroup)
 		coverBoxesAnimation(board, boxGroup)
 
+# new comment here: gameWonAnimation
 def gameWonAnimation(board):
 	coveredBoxes = generateRevealedBoxesData(True)
 	color1 = LIGHTBGCOLOR
@@ -121,6 +124,7 @@ def getBoxAtPixel(x, y):
 				return (boxx, boxy)
 	return (None, None)
 
+# new comment here: getShapeAndColor
 def getShapeAndColor(board, boxx, boxy):
 	return board[boxx][boxy][0], board[boxx][boxy][1]
 
@@ -142,6 +146,7 @@ def getRandomizedBoard():
 	random.shuffle(icons)
 	
 	# create the board data structure
+	# new comment here
 	board = []
 	for x in range(BOARDWIDTH):
 		column = []
@@ -155,6 +160,7 @@ def drawHighlightBox(boxx, boxy):
 	left, top = leftTopCoordsOfBox(boxx, boxy)
 	pygame.draw.rect(DISPLAYSURF, HIGHLIGHTCOLOR, (left - 5, top - 5, BOXSIZE + 10, BOXSIZE + 10))
 
+# new comment here: drawIcon
 def drawIcon(shape, color, boxx, boxy):
 	quarter = int(BOXSIZE * 0.25)
 	half = int(BOXSIZE * 0.5)
@@ -164,6 +170,7 @@ def drawIcon(shape, color, boxx, boxy):
 	if shape == DONUT:
 		pygame.draw.circle(DISPLAYSURF, color, (left + half, top + half), half - 5)
 		pygame.draw.circle(DISPLAYSURF, BGCOLOR, (left + half, top + half), quarter - 5)
+	# new comment here: draw square
 	elif shape == SQUARE:
 		pygame.draw.rect(DISPLAYSURF, color, (left + quarter, top + quarter, BOXSIZE - half, BOXSIZE - half))
 	elif shape == DIAMOND:
@@ -172,6 +179,7 @@ def drawIcon(shape, color, boxx, boxy):
 			(left + BOXSIZE - 1, top + half),
 			(left + half, top + BOXSIZE - 1),
 			(left, top + half)))
+	# new comment here: draw line
 	elif shape == LINES:
 		for i in range(0, BOXSIZE, 4):
 			pygame.draw.line(DISPLAYSURF, color, (left, top + i), (left + i, top))
@@ -179,6 +187,7 @@ def drawIcon(shape, color, boxx, boxy):
 	elif shape == OVAL:
 		pygame.draw.ellipse(DISPLAYSURF, color, (left, top + quarter, BOXSIZE, half))
 
+# new comment here: drawBoard
 def drawBoard(board, revealed):
 	for boxx in range(BOARDWIDTH):
 		for boxy in range(BOARDHEIGHT):
@@ -189,6 +198,7 @@ def drawBoard(board, revealed):
 				shape, color = getShapeAndColor(board, boxx, boxy)
 				drawIcon(shape, color, boxx, boxy)
 
+# new comment here: main
 def main():
 	"""Start a game
 	"""
